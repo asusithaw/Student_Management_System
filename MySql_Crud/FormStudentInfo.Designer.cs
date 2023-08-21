@@ -34,16 +34,17 @@
             label1 = new Label();
             panel2 = new Panel();
             dataGridView = new DataGridView();
+            txtSearch = new TextBox();
+            pictureBox1 = new PictureBox();
+            btnNew = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
+            Column8 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewButtonColumn();
             Column7 = new DataGridViewButtonColumn();
-            txtSearch = new TextBox();
-            pictureBox1 = new PictureBox();
-            btnNew = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -81,7 +82,7 @@
             panel2.Controls.Add(btnNew);
             panel2.Location = new Point(61, 228);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1001, 467);
+            panel2.Size = new Size(1001, 374);
             panel2.TabIndex = 0;
             // 
             // dataGridView
@@ -95,9 +96,9 @@
             dataGridView.BackgroundColor = Color.White;
             dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6, Column7 });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column8, Column3, Column4, Column5, Column6, Column7 });
             dataGridView.GridColor = Color.White;
-            dataGridView.Location = new Point(34, 136);
+            dataGridView.Location = new Point(36, 127);
             dataGridView.MultiSelect = false;
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
@@ -106,13 +107,48 @@
             dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridView.RowTemplate.Height = 29;
             dataGridView.ShowEditingIcon = false;
-            dataGridView.Size = new Size(900, 294);
+            dataGridView.Size = new Size(900, 201);
             dataGridView.TabIndex = 0;
             dataGridView.CellClick += dataGridView_CellClick;
             // 
+            // txtSearch
+            // 
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtSearch.Location = new Point(721, 66);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(176, 27);
+            txtSearch.TabIndex = 2;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox1.BackColor = SystemColors.Control;
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Image = Properties.Resources.icons8_search_64;
+            pictureBox1.Location = new Point(890, 66);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(46, 27);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // btnNew
+            // 
+            btnNew.BackColor = Color.FromArgb(160, 113, 255);
+            btnNew.FlatAppearance.BorderSize = 0;
+            btnNew.ForeColor = Color.White;
+            btnNew.Location = new Point(36, 46);
+            btnNew.Name = "btnNew";
+            btnNew.Size = new Size(116, 47);
+            btnNew.TabIndex = 1;
+            btnNew.Text = "New";
+            btnNew.UseVisualStyleBackColor = false;
+            btnNew.Click += btnNew_Click;
+            // 
             // Column1
             // 
-            Column1.DataPropertyName = "id";
+            Column1.DataPropertyName = "ID";
             Column1.HeaderText = "#";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
@@ -120,15 +156,24 @@
             // 
             // Column2
             // 
-            Column2.DataPropertyName = "student_name";
+            Column2.DataPropertyName = "StudentName";
             Column2.HeaderText = "Name";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             Column2.ReadOnly = true;
             // 
+            // Column8
+            // 
+            Column8.DataPropertyName = "SinhalaText";
+            Column8.HeaderText = "සිංහල නම  ";
+            Column8.MinimumWidth = 6;
+            Column8.Name = "Column8";
+            Column8.ReadOnly = true;
+            Column8.Resizable = DataGridViewTriState.True;
+            // 
             // Column3
             // 
-            Column3.DataPropertyName = "reg";
+            Column3.DataPropertyName = "Reg";
             Column3.HeaderText = "Reg.";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
@@ -136,7 +181,7 @@
             // 
             // Column4
             // 
-            Column4.DataPropertyName = "class";
+            Column4.DataPropertyName = "Class";
             Column4.HeaderText = "Class";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
@@ -144,7 +189,7 @@
             // 
             // Column5
             // 
-            Column5.DataPropertyName = "section";
+            Column5.DataPropertyName = "Section";
             Column5.HeaderText = "Section";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
@@ -184,46 +229,11 @@
             Column7.Text = "Delete";
             Column7.UseColumnTextForButtonValue = true;
             // 
-            // txtSearch
-            // 
-            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtSearch.Location = new Point(721, 66);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(176, 27);
-            txtSearch.TabIndex = 2;
-            txtSearch.TextChanged += txtSearch_TextChanged;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox1.BackColor = SystemColors.Control;
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Image = Properties.Resources.icons8_search_64;
-            pictureBox1.Location = new Point(890, 66);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(46, 27);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
-            // btnNew
-            // 
-            btnNew.BackColor = Color.FromArgb(160, 113, 255);
-            btnNew.FlatAppearance.BorderSize = 0;
-            btnNew.ForeColor = Color.White;
-            btnNew.Location = new Point(36, 46);
-            btnNew.Name = "btnNew";
-            btnNew.Size = new Size(116, 47);
-            btnNew.TabIndex = 1;
-            btnNew.Text = "New";
-            btnNew.UseVisualStyleBackColor = false;
-            btnNew.Click += btnNew_Click;
-            // 
             // FormStudentInfo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1091, 726);
+            ClientSize = new Size(1091, 633);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormStudentInfo";
@@ -250,6 +260,7 @@
         private DataGridView dataGridView;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;

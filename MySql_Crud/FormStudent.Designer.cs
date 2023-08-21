@@ -31,6 +31,8 @@
             panel1 = new Panel();
             lblText = new Label();
             panel2 = new Panel();
+            txtSinhalaText = new TextBox();
+            lblSinhalaText = new Label();
             btnSave = new Button();
             txtSection = new TextBox();
             label4 = new Label();
@@ -68,6 +70,8 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(txtSinhalaText);
+            panel2.Controls.Add(lblSinhalaText);
             panel2.Controls.Add(btnSave);
             panel2.Controls.Add(txtSection);
             panel2.Controls.Add(label4);
@@ -82,12 +86,28 @@
             panel2.Size = new Size(565, 525);
             panel2.TabIndex = 0;
             // 
+            // txtSinhalaText
+            // 
+            txtSinhalaText.Location = new Point(50, 147);
+            txtSinhalaText.Name = "txtSinhalaText";
+            txtSinhalaText.Size = new Size(446, 27);
+            txtSinhalaText.TabIndex = 7;
+            // 
+            // lblSinhalaText
+            // 
+            lblSinhalaText.AutoSize = true;
+            lblSinhalaText.Location = new Point(50, 114);
+            lblSinhalaText.Name = "lblSinhalaText";
+            lblSinhalaText.Size = new Size(96, 20);
+            lblSinhalaText.TabIndex = 6;
+            lblSinhalaText.Text = "සිංහල නම  ";
+            // 
             // btnSave
             // 
             btnSave.BackColor = Color.FromArgb(160, 113, 255);
             btnSave.FlatAppearance.BorderSize = 0;
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(50, 434);
+            btnSave.Location = new Point(49, 449);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(116, 47);
             btnSave.TabIndex = 5;
@@ -97,7 +117,7 @@
             // 
             // txtSection
             // 
-            txtSection.Location = new Point(49, 362);
+            txtSection.Location = new Point(49, 404);
             txtSection.Name = "txtSection";
             txtSection.Size = new Size(446, 27);
             txtSection.TabIndex = 4;
@@ -105,7 +125,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(49, 329);
+            label4.Location = new Point(50, 368);
             label4.Name = "label4";
             label4.Size = new Size(65, 20);
             label4.TabIndex = 0;
@@ -113,7 +133,7 @@
             // 
             // txtClass
             // 
-            txtClass.Location = new Point(49, 256);
+            txtClass.Location = new Point(49, 313);
             txtClass.Name = "txtClass";
             txtClass.Size = new Size(446, 27);
             txtClass.TabIndex = 3;
@@ -121,7 +141,7 @@
             // Class
             // 
             Class.AutoSize = true;
-            Class.Location = new Point(49, 223);
+            Class.Location = new Point(50, 273);
             Class.Name = "Class";
             Class.Size = new Size(49, 20);
             Class.TabIndex = 0;
@@ -129,7 +149,7 @@
             // 
             // txtReg
             // 
-            txtReg.Location = new Point(50, 167);
+            txtReg.Location = new Point(49, 229);
             txtReg.Name = "txtReg";
             txtReg.Size = new Size(446, 27);
             txtReg.TabIndex = 2;
@@ -137,7 +157,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(50, 134);
+            label2.Location = new Point(50, 189);
             label2.Name = "label2";
             label2.Size = new Size(45, 20);
             label2.TabIndex = 0;
@@ -191,5 +211,7 @@
         private TextBox txtSection;
         private Label label4;
         private Button btnSave;
+        private Label lblSinhalaText;
+        private TextBox txtSinhalaText;
     }
 }

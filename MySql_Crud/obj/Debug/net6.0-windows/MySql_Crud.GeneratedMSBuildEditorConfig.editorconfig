@@ -14,4 +14,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MySql_Crud
-build_property.ProjectDir = D:\ASP.net\Mysql_Crud\MySql_Crud\
+build_property.ProjectDir = D:\ASP.net\MySql_Crud\MySql_Crud\

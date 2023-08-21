@@ -1,108 +1,104 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySql_Crud.Models;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace MySql_Crud
 {
     class DbStudent
     {
-        public static MySqlConnection GetConnection()
+        // Viewing Students on the GridView
+        public static void GetStudentInfo(DataGridView dataGridView)
         {
-            string sql = "datasource=localhost;port=3306;username=root;password=Susitha@1997;database=students";
-            MySqlConnection mySqlConnection = new MySqlConnection(sql);
-            try
-            {
-                mySqlConnection.Open();
-            }
-            catch (MySqlException ex)
-            {
 
-                MessageBox.Show("My SQL Connection! \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            using (ISession session = NHibernateSessions.OpenSession())
+
+            {
+                IQuery query = session.CreateQuery("FROM Student");
+
+                var sInfos = query.List<Student>();
+
+                dataGridView.DataSource = sInfos;
             }
-            return mySqlConnection;
+
         }
 
-        public static void AddStudent(Student student)
+        public static void GetStudentSearchInfo(string sql, DataGridView dataGridView)
         {
-            string sql = "INSERT INTO student VALUES (NULL, @StudentName, @StudentReg, @StudentClass, @StudentSection, NULL)";
-            MySqlConnection mySqlConnection = GetConnection();
-            MySqlCommand mySqlCommand = new MySqlCommand(sql, mySqlConnection);
-            mySqlCommand.CommandType = CommandType.Text;
-            mySqlCommand.Parameters.Add("@StudentName", MySqlDbType.VarChar).Value = student.Name;
-            mySqlCommand.Parameters.Add("@StudentReg", MySqlDbType.VarChar).Value = student.Reg;
-            mySqlCommand.Parameters.Add("@StudentClass", MySqlDbType.VarChar).Value = student.Class;
-            mySqlCommand.Parameters.Add("@StudentSection", MySqlDbType.VarChar).Value = student.Section;
-            try
-            {
-                mySqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Added Successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (MySqlException ex)
-            {
+            using (ISession session = NHibernateSessions.OpenSession())
 
-                MessageBox.Show("Student not inserted \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                IQuery query = session.CreateQuery(sql);
+
+                var sInfos = query.List<Student>();
+
+                dataGridView.DataSource = sInfos;
             }
-            mySqlConnection.Close();
         }
-        
-        
+       
+        // Creating a Student
+        public static void CreateStudent(Student student)
+        {
+
+        }
+
+        // Updating/Editing a Student
         public static void UpdateStudent(Student student, string id)
         {
-            string sql = "UPDATE student SET student_name = @StudentName, reg = @StudentReg, class = @StudentClass, section = @StudentSection WHERE id = @StudentID";
-            MySqlConnection mySqlConnection = GetConnection();
-            MySqlCommand mySqlCommand = new MySqlCommand(sql, mySqlConnection);
-            mySqlCommand.CommandType = CommandType.Text;
-            mySqlCommand.Parameters.Add("@StudentID", MySqlDbType.VarChar).Value = id; 
-            mySqlCommand.Parameters.Add("@StudentName", MySqlDbType.VarChar).Value = student.Name;
-            mySqlCommand.Parameters.Add("@StudentReg", MySqlDbType.VarChar).Value = student.Reg;
-            mySqlCommand.Parameters.Add("@StudentClass", MySqlDbType.VarChar).Value = student.Class;
-            mySqlCommand.Parameters.Add("@StudentSection", MySqlDbType.VarChar).Value = student.Section;
-            try
-            {
-                mySqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Updated Successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (MySqlException ex)
-            {
+            student.ID = Convert.ToInt32(id);
 
-                MessageBox.Show("Student is not Updated. \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            using (ISession session = NHibernateSessions.OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Update(student);
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Student is Updated \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
+                }
+               
             }
-            mySqlConnection.Close();
+
         }
 
-        public static void DeleteStudent(string id)
+        // Deleting a Student 
+        public static void DeleteStudent(int id)
         {
-            string sql = "DELETE FROM student WHERE id = @StudentID";
-            MySqlConnection mySqlConnection = GetConnection();
-            MySqlCommand mySqlCommand = new MySqlCommand(sql, mySqlConnection);
-            mySqlCommand.CommandType= CommandType.Text;
-            mySqlCommand.Parameters.Add("@StudentID", MySqlDbType.VarChar).Value=id;
-            try
+
+            using (ISession session = NHibernateSessions.OpenSession())
             {
-                mySqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Delete Suceessfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information );
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        Student student = session.Get<Student>(id);
+                        session.Delete(student);
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Student is Deleted \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+
+                }
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Student is not deleted \n" +ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);   
-            }
-            mySqlConnection.Close();
-        } 
-        
-        public static void DispalyAndSearch(string query, DataGridView dataGridView)
-        {
-            string sql = query;
-            MySqlConnection mySqlConnection = GetConnection();
-            MySqlCommand mySqlCommand = new MySqlCommand(sql, mySqlConnection);
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
-            DataTable dataTable = new DataTable();
-            mySqlDataAdapter.Fill(dataTable);
-            dataGridView.DataSource = dataTable;
-            mySqlConnection.Close();
         }
+
+
+
     }
 }

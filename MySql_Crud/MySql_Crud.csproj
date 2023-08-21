@@ -9,7 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Mappings\Student.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Mappings\Student.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.33" />
+    <PackageReference Include="NHibernate" Version="5.4.5" />
   </ItemGroup>
 
   <ItemGroup>

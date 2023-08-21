@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASP.net\\Mysql_Crud\\MySql_Crud\\MySql_Crud.csproj": {}
+    "D:\\ASP.net\\MySql_Crud\\MySql_Crud\\MySql_Crud.csproj": {}
   },
   "projects": {
-    "D:\\ASP.net\\Mysql_Crud\\MySql_Crud\\MySql_Crud.csproj": {
+    "D:\\ASP.net\\MySql_Crud\\MySql_Crud\\MySql_Crud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASP.net\\Mysql_Crud\\MySql_Crud\\MySql_Crud.csproj",
+        "projectUniqueName": "D:\\ASP.net\\MySql_Crud\\MySql_Crud\\MySql_Crud.csproj",
         "projectName": "MySql_Crud",
-        "projectPath": "D:\\ASP.net\\Mysql_Crud\\MySql_Crud\\MySql_Crud.csproj",
+        "projectPath": "D:\\ASP.net\\MySql_Crud\\MySql_Crud\\MySql_Crud.csproj",
         "packagesPath": "C:\\Users\\Susitha Athapaththu\\.nuget\\packages\\",
-        "outputPath": "D:\\ASP.net\\Mysql_Crud\\MySql_Crud\\obj\\",
+        "outputPath": "D:\\ASP.net\\MySql_Crud\\MySql_Crud\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 23.1\\Components\\Offline Packages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Susitha Athapaththu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\DevExpress 23.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +48,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.33, )"
+            },
+            "NHibernate": {
+              "target": "Package",
+              "version": "[5.4.5, )"
             }
           },
           "imports": [
